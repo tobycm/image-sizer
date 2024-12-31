@@ -1,5 +1,8 @@
 # image-sizer - A simple tool to resize and convert your images for the web
 
+### Demo: [https://tobycm.github.io/image-sizer/demo/](https://tobycm.github.io/image-sizer/demo/)
+### Video demo: [https://youtu.be/7agkmatB7cA](https://youtu.be/7agkmatB7cA)
+
 ## Usage:
 
 ### Install dependencies
