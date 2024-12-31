@@ -33,7 +33,7 @@ const { values: args, positionals } = parseArgs({
     },
     srcgen: {
       type: "string",
-      default: "source",
+      default: "img",
       description: "Comma-separated list sources to generate",
     },
     convertprogram: {
@@ -92,12 +92,26 @@ for (const image of loadedImages) {
     }
   }
 
+  if (srcgen.includes("img")) {
+    console.log(
+      `<img src="${image.path}" srcset="${image.path} ${mySizes[0] + 1}w, ${mySizes
+        .map((size) =>
+          formats.map(
+            (format) =>
+              `${path.join(output, args.folderforeach ? `x${size}.${format}` : image.path.replace(/\.[^.]*$/, `-${size}.${format}`))} ${size}w`
+          )
+        )
+        .flat()
+        .join(", ")}">`
+    );
+  }
+
   if (srcgen.includes("source")) {
     const img = `<img src="${image.path}">`;
 
     const sources = formats.map(
       (format) =>
-        `<source srcset="${sizes
+        `<source srcset="${image.path} ${mySizes[0] + 1}w, ${mySizes
           .map(
             (size) =>
               `${path.join(output, args.folderforeach ? `x${size}.${format}` : image.path.replace(/\.[^.]*$/, `-${size}.${format}`))} ${size}w`
